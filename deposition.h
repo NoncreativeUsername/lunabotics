@@ -28,7 +28,7 @@ void adjust_angle(readSerial* ampSerial)
     //line up straight to hopper
     while((distL1 > distR1 + 5) or (distR1 > distL1 + 5))
     {
-        std::cout << arr[4] <<std::endl << arr[5] <<std::endl << arr[6] <<std::endl << arr[7] <<std::endl;
+        //std::cout << arr[4] <<std::endl << arr[5] <<std::endl << arr[6] <<std::endl << arr[7] <<std::endl;
         if (distL1 > distR1 + 5)         //turn right
         {
             std::cout << "loop\n";
@@ -44,8 +44,8 @@ void adjust_angle(readSerial* ampSerial)
             arr = ampSerial->getSerialVals(10);
             distL1 = arr[5];            //update distance values
             distR1 = arr[7];
-            std::cout << "distL " << distL1 << std::endl;
-            std::cout << "distR " << distR1 << std::endl << std::endl;
+            //std::cout << "distL " << distL1 << std::endl;
+            //std::cout << "distR " << distR1 << std::endl << std::endl;
         }
     
         else if (distR1 > distL1 + 5)
@@ -64,10 +64,8 @@ void adjust_angle(readSerial* ampSerial)
             distL1 = arr[5];            //update distance values
             distR1 = arr[7];
 
-            //std::cout << "angle " << angl << std::endl;
             std::cout << "distL " << distL1 << std::endl;
             std::cout << "distR " << distR1 << std::endl << std::endl;
-            //angl = asin((distR1 - distL1) / sepperation)* (180/3.14);   //update angle
         }
         else {
             Motor_RightF->SETSPEED(0);                        //stop the robot
@@ -107,12 +105,6 @@ void adjust_dist(readSerial* ampSerial)
         Motor_LeftB->SETSPEED(speed);
         
         sleep(0.5);
-        /*
-        Motor_RightF->SETSPEED(0);                        //stop motors when done
-        Motor_RightB->SETSPEED(0);
-        Motor_LeftF->SETSPEED(0);
-        Motor_LeftB->SETSPEED(0);
-        */
     
         arr = ampSerial->getSerialVals(10);
         distR1 = arr[7];                                      //update distance
